@@ -1,0 +1,11 @@
+const express = require('express')
+const app = express();
+
+const path = require('path')
+app.use('/',express.static(path.join(__dirname,'public')))//--> index.html file is visible here
+app.use('/api',require('./routes/api').route) //--> include the index.js file 
+
+app.use('/',express.json())
+app.use('/',express.urlencoded({extended:true}))
+
+app.listen(2222,()=>console.log("server started at http://localhost:2222"));
