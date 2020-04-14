@@ -8,4 +8,4 @@ app.use('/api',require('./routes/api').route) //--> include the index.js file
 app.use('/',express.json())
 app.use('/',express.urlencoded({extended:true}))
 
-app.listen(2222,()=>console.log("server started at http://localhost:2222"));
+app.listen(2223,()=>console.log("server started at http://localhost:2222"));

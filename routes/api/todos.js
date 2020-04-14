@@ -30,26 +30,25 @@ route.get('/:id',(req,res)=>{
     })
 })
 
-route.post('/',(req,res)=>{
-    Task.Create({
-        id:parseInt(req.body.id),
-        description:req.body.description,
-        title:req.body.title,
-        duedate: Date.parse(req.body.duedate),
+route.post('/',async (req,res)=>{
+     await Task.create({
+        
+        description:"desc value ",
+        title: req.body.title,
+        duedate: req.body.duedate,
         status:req.body.status,
         priority:req.body.priority
         
 
-    }).then((task)=>{
-        res.status(201).send(task)
     })
-    .catch((user)=>{
-        res.status(501).send({
-            error:"Could not add new task"
-        })
+    res.status(201).send(task)
+    
+    // .catch((user)=>{
+    //     res.status(501).send({
+    //         error:"Could not add new task"
+    //     })
 
     })
-})
 
 route.get('/:id/notes', async (req,res)=>{
     const id = parseInt(req.params.id)
