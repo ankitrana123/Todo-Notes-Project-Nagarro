@@ -20,7 +20,7 @@ const db = new Sequelize({
     note:{
         // type:Sequelize.ARRAY(Sequelize.STRING),
         type:Sequelize.STRING,
-        allowNull:false
+        allowNull:true
     }
   })
 
