@@ -12,13 +12,10 @@ const db = new Sequelize({
       autoIncrement: true,
       
     },
-    task_id: {                         //--> foreign key PK can have multiple FK (1:M rel)
-        type:Sequelize.INTEGER,         //one taskid can have multiple task_id
-        // required:true,
-        // allowNull:false
+    task_id: {                        
+        type:Sequelize.INTEGER,         
       },
     note:{
-        // type:Sequelize.ARRAY(Sequelize.STRING),
         type:Sequelize.STRING,
         allowNull:true
     }
@@ -64,7 +61,7 @@ const db = new Sequelize({
   async function task() {
     
   
-    await db.sync({ force: true })
+    await db.sync({force:true})
   
     await Tasks1.bulkCreate([
       {
@@ -73,7 +70,7 @@ const db = new Sequelize({
   },
       { 
         id:2,title:"Go to Gym ",description:"For Body Building",
-      duedate:'15-04-2020',status:"Complete",priority:"Medium",
+      duedate:"11-04-2020",status:"Complete",priority:"Medium",
     }
     ])
 

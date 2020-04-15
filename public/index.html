@@ -3,40 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="shop.js"> </script>
-<script src="index.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script defer async src="index.js"></script>
+  
+    <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="p-4 m-4">
+        
         <div class="row">
-            <div class="col"></div>
-            <h2 class="col">Task List</h2>
-            <div class="col"></div>
+        <div class="col-6 p-4">
+        <div class="list-group myclass">
+            <script>
+                $.getJSON('http://localhost:2223/api/todos', function(data) {
+                    data.forEach(element => {
+                        var text = `
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">${element.title}</h5>
+                                <small>Priority: ${element.priority}</small>
+                            </div>
+                            <p class="mb-1">${element.description}</p>
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="">State: ${element.status}</h6>
+                                <small>Due Date: ${element.duedate.substring(0, 10)}</small>
+                            </div>
+                        </a>`
+                        $(".myclass").append(text);
+                    });
+
+                    
+                })
+            </script>
+        
+        </div>  
+
         </div>
-
-        <div class="row" id="Todo-list">
-
-            <div class="col-6 card mx-2 p-4">
-                Title:<div class="title">First Task</div>
-                Due Date:<div class="duedate">15-04-2020</div>
-                Description:<div class="description">adding first todo item</div>
-                Status:<div class="status">Pending</div>
-                Priority:<div class="Priority">high</div>
+        <div class="col-6 p-4">
+           <form id="form-create-task" action ="http://localhost:2223/api/todos" method="POST">
                 
-                <div class="row">
-                    <!-- <div class="col m-3 p-3">
-                        Notes:<div class="Notes">1. adding first note</div>
-                    </div> -->
-                    <buton class="col btn btn-primary m-3">ADD</button>
-                </div>
+            <h3 >Add Task</h3>
+               <div class="form-group">
+                    <label for="title">Title</label><br>
+                    <input type="text" id="title" name="title">
+               </div>
 
-            </div>
+               <div class="form-group">
+                    <label for="description">Description</label><br>
+                    <input type="textarea" id="description" name="description">
+               </div>
+               <div>
+                    <label for="duedate">Due Date</label><br>
+                    <input type="date" id="duedate" name="duedate">
+               </div>
+                   
+
+               <div class="form-group">
+                <label for="status">Status:</label><br>
+                <input type="radio" id="incomplete" name="status"  value="incomplete" checked>
+                <label for="incomplete">Incomplete</label>
+                <input type="radio" id="complete" name="status" value="complete">
+                <label for="complete">complete</label>
+               </div>
+
+               <div class="form-group">
+                <label for="priority">Priority:</label><br>
+                <input type="radio" id="high" name="priority"  value="high">
+                <label for="high">High</label>
+                <input type="radio" id="medium" name="priority" value="medium" checked>
+                <label for="medium">Medium</label>
+                <input type="radio" id="low" name="priority" value="low">
+                <label for="low">Low</label><br>
+               </div>	
+
+               <button id="btnTodoAdd" class="btn btn-primary " type="submit">Add Task</button>
+            </form>
+           
         </div>
     </div>
+    </div>
+    
 </body>
 </html>
