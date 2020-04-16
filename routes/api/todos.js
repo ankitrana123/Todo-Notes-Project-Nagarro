@@ -31,7 +31,7 @@ route.get('/:id',(req,res)=>{
     })
 })
 
-//get notes by some id
+//get notes by some task_id
 route.get('/:id/notes', async (req,res)=>{
     const id = parseInt(req.params.id)
     const notes = await Note.findAll({where: {task_id: id}})
@@ -55,9 +55,10 @@ route.post('/', async (req, res) => {
 
 //post a note using id
 route.post('/:id/notes',(req,res)=>{
-    const id = parseInt(req.params.id);
+    const p_id = parseInt(req.params.id);
+    console.log(p_id)
     Note.create({
-        note_id:id,
+        task_id:p_id,
         note:req.body.note
         
 
