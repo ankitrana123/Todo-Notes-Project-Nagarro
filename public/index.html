@@ -8,45 +8,33 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script defer async src="index.js"></script>
+    <script src="list.js"></script>
   
     <title>Document</title>
 </head>
 <body>
     <div class="p-4 m-4">
-        
+        <H2 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;padding-bottom: 40px;">Task-Notes TO-DO Application</H2>
         <div class="row">
+            
+            <div class="col-sm-6">
+                Sort according To:
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary" id="duedate" onclick="listing(1)">Due Date-Asc</button>
+                    <button type="button" class="btn btn-secondary" id="duedate" onclick="listing(2)">Due Date-Dsc</button>
+                    <button type="button" class="btn btn-secondary" id="status" onclick="listing(3)">Status</button>
+                    <button type="button" class="btn btn-secondary" id="priority" onclick="listing(4)">Priority</button>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            
         <div class="col-sm-6 p-4">
-        <div class="list-group myclass">
-            <script>
-                $.getJSON('http://localhost:2223/api/todos', function(data) {
-                    data.forEach(element => {
-                        var text = `
-                        <a href="#collapse${element.id}" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapse${element.id}" 
-                                class="list-group-item list-group-item-action flex-column align-items-start" id="${element.id}">
-
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">${element.title}</h5>
-                                <small>Priority: ${element.priority}</small>
-                            </div>
-                            <p class="mb-1">${element.description}</p>
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="">State: ${element.status}</h6>
-                                
-                                <small>Due Date: ${element.duedate.substring(0, 10)}</small>
-                            </div>
-                         </a>
-                            
-                            <div class="collapse" id="collapse${element.id}">
-                                
-                            </div>
-                            `
-                        $(".myclass").append(text);
-                    });
-
-                    
-                })
-            </script>
+                
+            <div class="list-group myclass">
+            
         
+            <script>listing(1);</script>
         </div>  
 
         </div>
