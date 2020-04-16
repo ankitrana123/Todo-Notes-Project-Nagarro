@@ -1,7 +1,7 @@
 function listing(sortId) {
     $('.myclass').empty()
     console.log(sortId)
-    $.getJSON('http://localhost:2223/api/todos', function (data) {
+    $.getJSON('/api/todos', function (data) {
         if (sortId == 1) {
             data.sort(function (a, b) {
                 return new Date(b.duedate) - new Date(a.duedate);

@@ -31,7 +31,7 @@ $(document).ready(function(){
     $(collapseid).append(input)
        
     //append list item to collapse
-        const urlNotes = 'http://localhost:2223/api/todos/' + id1 + '/notes'
+        const urlNotes = '/api/todos/' + id1 + '/notes'
         
         
         $.getJSON(urlNotes, function(data) {
@@ -43,11 +43,11 @@ $(document).ready(function(){
             })
         });
 
-        const urlTask = 'http://localhost:2223/api/todos/'+id1
+        const urlTask = '/api/todos/'+id1
 
         $.getJSON(urlTask, function (data) {
             console.log("requested")
-            const url = 'http://localhost:2223/api/todos/' + data.id
+            const url = '/api/todos/' + data.id
             var editContent = `
             <div class="collapse ${flag ? "show" : ""}" id="${collapseid2}">
                 <h4 class="text-center">Edit "${data.title}" Task</h4>
@@ -114,7 +114,7 @@ function createNote(id){
     item["note"] = notes;
     item["id"] = id;
     //console.log(item);
-    const url = 'http://localhost:2223/api/todos/' + id + '/notes'
+    const url = '/api/todos/' + id + '/notes'
     $.ajax({
         type: "POST",
         url: url,
@@ -138,7 +138,7 @@ function createNote(id){
         console.log("adding a new todo");
         $.ajax({
             type: "POST",
-            url: "http://localhost:2223/api/todos/",
+            url: "/api/todos/",
             data: JSON.stringify(obj),
             dataType: "json",
             contentType : "application/json",

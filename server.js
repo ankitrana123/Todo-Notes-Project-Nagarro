@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 2223 
 const express = require('express')
 const app = express();
 
@@ -10,4 +11,4 @@ app.use('/',express.urlencoded({extended:true}))
 app.use('/api',require('./routes/api').route) //--> include the index.js file 
 
 
-app.listen(2223,()=>console.log("server started at http://localhost:2222"));
+app.listen(PORT,()=>console.log("server started at http://localhost:2222"));
