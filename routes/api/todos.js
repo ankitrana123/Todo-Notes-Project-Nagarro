@@ -75,7 +75,7 @@ route.post('/:id/notes',(req,res)=>{
 
 //update a note using its id
 route.patch('/:id',async (req,res)=>{
-    const id = parseInt(req.params.id);
+    const tid = parseInt(req.params.id);
      await Task.update({
          
         title: req.body.title,
@@ -84,7 +84,7 @@ route.patch('/:id',async (req,res)=>{
         duedate: req.body.duedate,
         priority: req.body.priority
     },{
-        where: {id: this.id}
+        where: {id: tid}
     })
     res.status(201).send({
         success: ' task updated succesfully'

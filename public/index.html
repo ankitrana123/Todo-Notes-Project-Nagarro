@@ -15,7 +15,7 @@
     <div class="p-4 m-4">
         
         <div class="row">
-        <div class="col-6 p-4">
+        <div class="col-sm-6 p-4">
         <div class="list-group myclass">
             <script>
                 $.getJSON('http://localhost:2223/api/todos', function(data) {
@@ -31,10 +31,11 @@
                             <p class="mb-1">${element.description}</p>
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="">State: ${element.status}</h6>
-                                <small><button id="editTodo" class="btn btn-secondary " >EDIT</button></small>
+                                
                                 <small>Due Date: ${element.duedate.substring(0, 10)}</small>
                             </div>
                          </a>
+                            
                             <div class="collapse" id="collapse${element.id}">
                                 
                             </div>
@@ -49,7 +50,11 @@
         </div>  
 
         </div>
-        <div class="col-6 p-4">
+        <div class="editTag">
+          
+            
+        </div>
+        <div class="col-sm-6 p-4">
            <form id="form-create-task" action ="http://localhost:2223/api/todos" method="POST">
                 
             <h3 >Add Task</h3>
